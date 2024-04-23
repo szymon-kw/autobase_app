@@ -4,4 +4,8 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+
+    <include file="001_create_table_brand.xml" relativeToChangelogFile="true" />
+    <include file="002_create_table_car.xml" relativeToChangelogFile="true" />
+
 </databaseChangeLog>
