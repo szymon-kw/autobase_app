@@ -1,10 +1,12 @@
 package pl.autobase.web;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.server.ResponseStatusException;
 import pl.autobase.domain.car.Car;
 import pl.autobase.domain.car.CarService;
 import pl.autobase.domain.car.dto.CarDto;
@@ -21,8 +23,9 @@ public class CarController {
 
     @GetMapping("/auto/{id}")
     public String getCar(@PathVariable long id, Model model) {
-        Optional<CarDto> optionalCar = carService.findCarById(id);
-        optionalCar.ifPresent(car -> model.addAttribute("car", car));
+        CarDto car = carService.findCarById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        model.addAttribute("car", car);
         return "car";
     }
 }
