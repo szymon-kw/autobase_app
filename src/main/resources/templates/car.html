@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Nazwa auta - AutoBase</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/common.js"></script>
+    <link rel="stylesheet" href="../static/styles/main.css">
+</head>
+<body>
+<div class="container">
+    <ul class="menu">
+        <li class="menu-logo-container">
+            <a href="#" th:href="@{/}">
+                <i class="fa-solid fa-car logo"></i> AutoBase
+            </a>
+        </li>
+        <li class="menu-toggle">
+            <a href="#"><i id="toggle-icon" class="far fa-plus-square"></i></a>
+        </li>
+        <li class="menu-item">
+            <a href="#">Marki aut</a>
+        </li>
+        <li class="menu-item">
+            <a href="#">Top10 aut</a>
+        </li>
+        <li class="menu-item">
+            <a href="#">Zaloguj się</a>
+        </li>
+    </ul>
+    <header class="jumbotron">
+        <h1 class="jumbotron-header">Dziękujemy za odwiedzenie naszej strony!</h1>
+        <p class="jumbotron-description">
+            Jeżeli się tu znalazłeś, to zakładam, że jesteś fanem motoryzacji.
+            <br>
+            Dobrze trafiłeś! Znajdziesz tutaj wiele przydatnych informacji na temat samochodów osobowych i nie tylko,
+            a ponadto możesz dodawać własne treści.
+        </p>
+    </header>
+    <main class="main-content">
+        <section class="car">
+            <div class="car-summary">
+                <img src="../static/img/no_img.png"
+                     alt="Model auta"
+                     class="car-summary-cover"
+                />
+                <div class="car-summary-info">
+                    <h1 class="car-summary-title">Marka i model auta</h1>
+                    <p class="car-summary-original-title">Klasa auta</p>
+                    <p class="car-summary-item">Rok produkcji: 2005</p>
+                    <p class="car-summary-item" >
+                        Opis auta
+                    </p>
+                </div>
+            </div>
+            <div class="car-rating-container car-section">
+                <h2 class="car-section-heading">Ocena</h2>
+                <div>
+                    <p class="car-rating-value" th:text="${avgRating}">4.0</p>
+                    <p>Liczba ocen: 134</p>
+                </div>
+                <form action="#" class="car-rating-form">
+                    <p>Twoja ocena</p>
+                    <input type="hidden" name="carId">
+                    <div class="car-rating-buttons">
+                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
+                        <button class="car-rating-button"><i class="fa-regular fa-star"></i></button>
+                    </div>
+                </form>
+                <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
+            </div>
+        </section>
+        <section class="car"></section>
+
+        <section class="car-showcase-container car-section">
+            <h2 class="car-section-heading">Trailer</h2>
+            <iframe width="560" height="315" class="car-showcase"
+                    src="https://www.youtube.com/watch?v=IbuWlXBWUWIs"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </section>
+        <section class="car-section">
+            <h2 class="car-section-heading">Opis</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                esse cillum dolore eu fugiat nulla pariatur..</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>AutoBase 2024 <i class="fas fa-copyright"></i> Szymon Kwiecień</p>
+    </footer>
+</div>
+</body>
+</html>

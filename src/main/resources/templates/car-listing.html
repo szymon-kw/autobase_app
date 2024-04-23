@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>AutoBase</title>
@@ -11,14 +11,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <script defer src="../static/scripts/common.js"></script>
-    <link rel="stylesheet" href="../static/styles/main.css">
+    <script defer src="../static/scripts/common.js" th:src="@{/scripts/common.js}"></script>
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 </head>
 <body>
 <div class="container">
     <ul class="menu">
         <li class="menu-logo-container">
-            <a href="#">
+            <a href="#" th:href="@{/}">
                 <i class="fa-solid fa-car logo"></i> AutoBase
             </a>
         </li>
@@ -45,65 +45,28 @@
         </p>
     </header>
     <main class="main-content">
-        <h2 class="list-heading">Najczęściej wyszukiwane auta</h2>
-        <ul class="car-list">
-            <li class="car-list-item">
-                <a href="#">
+        <h2 class="list-heading" th:text="${heading}">Najpopularniejsze auta</h2>
+        <p class="list-description" th:text="${description}">Oto lista najczęściej wyszukiwanych aut.</p>
+        <br>
+        <ul class="car-list" th:remove="all-but-first">
+            <li class="car-list-item" th:each="car: ${cars}">
+                <a href="#" th:href="@{|/auto/${car.id}|}">
                     <img src="../static/img/no_img.png"
-                         alt="tytuł filmu"
+                         th:src="@{/img/no_img.png}"
+                         alt="Auto"
                          class="car-list-item-poster">
                 </a>
                 <div class="car-list-item-card">
                     <div class="car-list-item-content">
                         <h3 class="car-list-item-title">
-                            <a href="#">Auto nr1</a>
+                            <a href="#" th:href="@{|/auto/${car.id}|}" th:text="|${car.brand} ${car.model}|">Model auta</a>
                         </h3>
-                        <h4>Klasa</h4>
-                        <p>Rok produkcji: </p>
+                        <h4 th:text="|Rodzaj: ${car.type}|">Segment</h4>
+                        <p th:text="|Rok produkcji: ${car.productionYear}|">Rok produkcji</p>
                     </div>
                     <div class="car-list-item-rating">
                         <i class="fas fa-star"></i>
                         <span>8.7</span>
-                    </div>
-                </div>
-            </li>
-            <li class="car-list-item">
-                <a href="#">
-                    <img src="../static/img/no_img.png"
-                         alt="tytuł filmu"
-                         class="car-list-item-poster">
-                </a>
-                <div class="car-list-item-card">
-                    <div class="car-list-item-content">
-                        <h3 class="car-list-item-title">
-                            <a href="#">Auto nr2</a>
-                        </h3>
-                        <h4>Klasa</h4>
-                        <p>Rok produkcji</p>
-                    </div>
-                    <div class="car-list-item-rating">
-                        <i class="fas fa-star"></i>
-                        <span>9.8</span>
-                    </div>
-                </div>
-            </li>
-            <li class="car-list-item">
-                <a href="#">
-                    <img src="../static/img/no_img.png"
-                         alt="tytuł filmu"
-                         class="car-list-item-poster">
-                </a>
-                <div class="car-list-item-card">
-                    <div class="car-list-item-content">
-                        <h3 class="car-list-item-title">
-                            <a href="#">Auto nr3</a>
-                        </h3>
-                        <h4>Klasa</h4>
-                        <p>Rok produkcji</p>
-                    </div>
-                    <div class="car-list-item-rating">
-                        <i class="fas fa-star"></i>
-                        <span>7.5</span>
                     </div>
                 </div>
             </li>

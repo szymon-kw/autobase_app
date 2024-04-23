@@ -153,3 +153,99 @@ a {
     font-size: 1.6rem;
 }
 
+.car-summary {
+    display: flex;
+    margin-top: 16px;
+}
+
+.car-summary-cover {
+    object-fit: contain;
+    max-width: 200px;
+}
+
+.car-summary-info {
+    margin-left: 16px;
+}
+
+.car-summary-original-title {
+    color: #9e9e9e;
+    margin-bottom: 16px;
+}
+
+.car-summary-item {
+    margin: 8px 0;
+}
+
+.car-summary-title {
+    font-size: 2rem;
+}
+
+.car-rating-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 200px;
+}
+
+
+.car-rating-form > p {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.car-rating-value {
+    font-size: 4rem;
+    text-align: center;
+}
+
+.car-rating-button {
+    background-color: #ffc107;
+    border: 0;
+    padding: 4px;
+    font-size: 1.6rem;
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+.car-rating-button:hover {
+    opacity: 1;
+}
+
+.car-rating-container > * {
+    margin: 8px 0;
+}
+
+.car-section {
+    margin-top: 16px;
+    padding: 16px;
+    border: 1px #6d6d6d solid;
+}
+
+.car-section-heading {
+    margin-bottom: 8px;
+}
+
+.car-showcase {
+    display: block;
+    margin: auto;
+}
+
+@media only screen and (min-width: 992px) {
+    .car {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .car-rating-buttons {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .car-rating-button {
+        font-size: 1.2rem;
+        margin: 0 4px;
+    }
+}
+
+
