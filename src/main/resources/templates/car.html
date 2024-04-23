@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Nazwa auta - AutoBase</title>
+    <title th:text="|${car.brand} - Dane|">Nazwa auta - AutoBase</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <script defer src="../static/scripts/common.js"></script>
-    <link rel="stylesheet" href="../static/styles/main.css">
+    <script defer src="../static/scripts/common.js" th:src="@{/scripts/common.js}"></script>
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
 </head>
 <body>
 <div class="container">
@@ -48,15 +48,17 @@
         <section class="car">
             <div class="car-summary">
                 <img src="../static/img/no_img.png"
+                     th:src="@{/img/no_img.png}"
                      alt="Model auta"
                      class="car-summary-cover"
+                     th:alt="${car.brand}"
                 />
                 <div class="car-summary-info">
-                    <h1 class="car-summary-title">Marka i model auta</h1>
-                    <p class="car-summary-original-title">Klasa auta</p>
-                    <p class="car-summary-item">Rok produkcji: 2005</p>
-                    <p class="car-summary-item" >
-                        Opis auta
+                    <h1 class="car-summary-title" th:text="|${car.brand} ${car.model}|">Marka i model auta</h1>
+                    <p class="car-summary-original-title" th:text="${car.type}">Klasa auta</p>
+                    <p class="car-summary-item" th:text="|Rok produkcji: ${car.productionYear}|">Rok produkcji: 2005</p>
+                    <p class="car-summary-item" th:text="${car.shortDescription}">
+                        Krótki opis auta
                     </p>
                 </div>
             </div>
@@ -86,11 +88,14 @@
             <h2 class="car-section-heading">Trailer</h2>
             <iframe width="560" height="315" class="car-showcase"
                     src="https://www.youtube.com/watch?v=IbuWlXBWUWIs"
-                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    th:src="|https://www.youtube.com/embed/${car.getYoutubeTrailerId()}|"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+
+            </iframe>
         </section>
         <section class="car-section">
             <h2 class="car-section-heading">Opis</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            <p th:text="${car.description}">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
                 esse cillum dolore eu fugiat nulla pariatur..</p>

@@ -10,6 +10,9 @@ public class CarDtoMapper {
                 car.getModel(),
                 car.getType(),
                 car.getProductionYear(),
+                car.getShortDescription(),
+                car.getDescription(),
+                car.getYoutubeShowcaseId(),
                 car.getBrand().getName(),
                 car.isPopular()
         );

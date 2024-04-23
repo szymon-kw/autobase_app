@@ -6,14 +6,21 @@ public class CarDto {
     private String model;
     private String type;
     private Integer productionYear;
+    private String shortDescription;
+    private String description;
+    private String youtubeTrailerId;
     private String brand;
     private boolean popular;
 
-    public CarDto(Long id, String model, String type, Integer productionYear, String brand, boolean popular) {
+    public CarDto(Long id, String model, String type, Integer productionYear, String shortDescription,
+                  String description, String youtubeTrailerId, String brand, boolean popular) {
         this.id = id;
         this.model = model;
         this.type = type;
         this.productionYear = productionYear;
+        this.shortDescription = shortDescription;
+        this.description = description;
+        this.youtubeTrailerId = youtubeTrailerId;
         this.brand = brand;
         this.popular = popular;
     }
@@ -64,5 +71,29 @@ public class CarDto {
 
     public void setPopular(boolean popular) {
         this.popular = popular;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getYoutubeTrailerId() {
+        return youtubeTrailerId;
+    }
+
+    public void setYoutubeTrailerId(String youtubeTrailerId) {
+        this.youtubeTrailerId = youtubeTrailerId;
     }
 }

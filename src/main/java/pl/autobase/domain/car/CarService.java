@@ -3,6 +3,7 @@ package pl.autobase.domain.car;
 import org.springframework.stereotype.Service;
 import pl.autobase.domain.car.dto.CarDto;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CarService {
@@ -17,4 +18,10 @@ public class CarService {
         return carRepository.findAllByPopularIsTrue().stream()
                 .map(CarDtoMapper::map)
                 .toList();    }
+
+
+
+    public Optional<CarDto> findCarById(long id) {
+        return carRepository.findById(id).map(CarDtoMapper::map);
+    }
 }

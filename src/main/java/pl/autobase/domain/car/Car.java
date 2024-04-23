@@ -12,6 +12,9 @@ public class Car {
     private String model;
     private String type;
     private Integer productionYear;
+    private String shortDescription;
+    private String description;
+    private String youtubeShowcaseId;
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private Brand brand;
@@ -63,5 +66,29 @@ public class Car {
 
     public void setPopular(boolean popular) {
         this.popular = popular;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getYoutubeShowcaseId() {
+        return youtubeShowcaseId;
+    }
+
+    public void setYoutubeShowcaseId(String youtubeShowcaseId) {
+        this.youtubeShowcaseId = youtubeShowcaseId;
     }
 }
