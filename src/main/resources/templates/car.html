@@ -26,7 +26,7 @@
             <a href="#"><i id="toggle-icon" class="far fa-plus-square"></i></a>
         </li>
         <li class="menu-item">
-            <a href="#">Marki aut</a>
+            <a href="#" th:href="@{/admin}">Panel admina</a>
         </li>
         <li class="menu-item">
             <a href="#">Top10 aut</a>
@@ -48,10 +48,9 @@
         <section class="car">
             <div class="car-summary">
                 <img src="../static/img/no_img.png"
-                     th:src="@{/img/no_img.png}"
-                     alt="Model auta"
+                     th:src="${car.photo != null} ? ${'/img/' + car.photo} : '/img/no_img.png'"
+                     alt="${car.brand}"
                      class="car-summary-cover"
-                     th:alt="${car.brand}"
                 />
                 <div class="car-summary-info">
                     <h1 class="car-summary-title" th:text="|${car.brand} ${car.model}|">Marka i model auta</h1>
@@ -88,7 +87,7 @@
             <h2 class="car-section-heading">Trailer</h2>
             <iframe width="560" height="315" class="car-showcase"
                     src="https://www.youtube.com/watch?v=IbuWlXBWUWIs"
-                    th:src="|https://www.youtube.com/embed/${car.getYoutubeTrailerId()}|"
+                    th:src="|https://www.youtube.com/embed/${car.getYoutubeShowcaseId()}|"
                     frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
 
             </iframe>

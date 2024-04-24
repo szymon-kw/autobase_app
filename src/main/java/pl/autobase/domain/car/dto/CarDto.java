@@ -8,21 +8,23 @@ public class CarDto {
     private Integer productionYear;
     private String shortDescription;
     private String description;
-    private String youtubeTrailerId;
+    private String youtubeShowcaseId;
     private String brand;
     private boolean popular;
+    private String photo;
 
     public CarDto(Long id, String model, String type, Integer productionYear, String shortDescription,
-                  String description, String youtubeTrailerId, String brand, boolean popular) {
+                  String description, String youtubeShowcaseId, String brand, boolean popular, String photo) {
         this.id = id;
         this.model = model;
         this.type = type;
         this.productionYear = productionYear;
         this.shortDescription = shortDescription;
         this.description = description;
-        this.youtubeTrailerId = youtubeTrailerId;
+        this.youtubeShowcaseId = youtubeShowcaseId;
         this.brand = brand;
         this.popular = popular;
+        this.photo = photo;
     }
 
     public Long getId() {
@@ -89,11 +91,19 @@ public class CarDto {
         this.description = description;
     }
 
-    public String getYoutubeTrailerId() {
-        return youtubeTrailerId;
+    public String getYoutubeShowcaseId() {
+        return youtubeShowcaseId;
     }
 
-    public void setYoutubeTrailerId(String youtubeTrailerId) {
-        this.youtubeTrailerId = youtubeTrailerId;
+    public void setYoutubeShowcaseId(String youtubeShowcaseId) {
+        this.youtubeShowcaseId = youtubeShowcaseId;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

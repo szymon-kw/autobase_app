@@ -23,4 +23,9 @@ public class HomeController {
         model.addAttribute("cars", popularCars);
         return "car-listing";
     }
+
+//    @GetMapping("/admin")
+//    public String getAdminPanel() {
+//        return "admin/admin";
+//    }
 }

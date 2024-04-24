@@ -14,7 +14,8 @@ public class CarDtoMapper {
                 car.getDescription(),
                 car.getYoutubeShowcaseId(),
                 car.getBrand().getName(),
-                car.isPopular()
+                car.isPopular(),
+                car.getPhoto()
         );
     }
 }

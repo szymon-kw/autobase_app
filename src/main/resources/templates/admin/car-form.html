@@ -2,7 +2,7 @@
 <html lang="pl" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>AutoBase</title>
+    <title>Dodaj nowe auto |AutoBase|</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
           integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
@@ -45,32 +45,40 @@
         </p>
     </header>
     <main class="main-content">
-        <h2 class="list-heading" th:text="${heading}">Najpopularniejsze auta</h2>
-        <p class="list-description" th:text="${description}">Oto lista najczęściej wyszukiwanych aut.</p>
-        <br>
-        <ul class="car-list" th:remove="all-but-first">
-            <li class="car-list-item" th:each="car: ${cars}">
-                <a href="#" th:href="@{|/auto/${car.id}|}">
-                    <img style = "height: 100%" src="../static/img/no_img.png"
-                         th:src="${car.photo != null} ? ${'/img/' + car.photo} : '/img/no_img.png'"
-                         alt="Auto"
-                         class="car-list-item-poster">
-                </a>
-                <div class="car-list-item-card">
-                    <div class="car-list-item-content">
-                        <h3 class="car-list-item-title">
-                            <a href="#" th:href="@{|/auto/${car.id}|}" th:text="|${car.brand} ${car.model}|">Model auta</a>
-                        </h3>
-                        <h4 th:text="|Rodzaj: ${car.type}|">Segment</h4>
-                        <p th:text="|Rok produkcji: ${car.productionYear}|">Rok produkcji</p>
-                    </div>
-                    <div class="car-list-item-rating">
-                        <i class="fas fa-star"></i>
-                        <span>8.7</span>
-                    </div>
-                </div>
-            </li>
-        </ul>
+        <h2 class="list-heading">Dodaj nowe auto</h2>
+        <form action="" method="post" enctype="multipart/form-data" class="mc-form" th:object="${car}">
+            <label for="brand">Marka</label>
+            <select id="brand" th:field="*{brand}" required>
+                <option value="" hidden>Wybierz markę</option>
+                <option style="color:black" th:each="brand: ${brands}" th:value="${brand.name}" th:text="${brand.name}"></option>
+            </select>
+            <br><br>
+            <label for="model">Model</label>
+            <input type="text" id="model" placeholder="Podaj model auta np. A3" th:field="*{model}">
+            <br><br>
+            <label for="type">Typ auta</label>
+            <input type="text" id="type" placeholder="Podaj typ auta np. SUV" th:field="*{type}">
+            <br><br>
+            <label for="productionYear">Rok produkcji</label>
+            <input type="number" id="productionYear" placeholder="2019" th:field="*{productionYear}">
+            <br><br>
+            <label for="promoted">Popularny (wyświetlenie na stronie głównej)?</label>
+            <input id="promoted" type="checkbox" th:field="*{popular}">
+            <br><br>
+            <label for="photo">Zdjęcie</label>
+            <input type="file" id="photo" th:field="*{photo}" accept="image/png, image/jpeg">
+            <br><br>
+            <label for="youtubeShowcaseId">Identyfikator filmu prezentacji auta na Youtube</label>
+            <input type="text" id="youtubeShowcaseId" placeholder="h3PZP0lz_GE" th:field="*{youtubeShowcaseId}">
+            <br><br>
+            <label for="shortDescription">Krótki opis - max 200 znaków</label>
+            <textarea id="shortDescription" rows="5" th:field="*{shortDescription}"></textarea>
+            <br><br>
+            <label for="description">Pełny opis</label>
+            <textarea id="description" rows="10" th:field="*{description}"></textarea>
+            <br><br>
+            <button type="submit">Dodaj auto</button>
+        </form>
     </main>
     <footer class="footer">
         <p>AutoBase 2024 <i class="fas fa-copyright"></i> Szymon Kwiecień</p>
