@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>AutoBase - Rejestracja</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script defer src="../static/scripts/common.js" th:src="@{/scripts/common.js}"></script>
+    <link rel="stylesheet" href="../static/styles/main.css" th:href="@{/styles/main.css}">
+</head>
+<body>
+<div class="container">
+    <ul class="menu">
+        <li class="menu-logo-container">
+            <a href="#" th:href="@{/}">
+                <i class="fa-solid fa-car logo"></i> AutoBase
+            </a>
+        </li>
+        <li class="menu-toggle">
+            <a href="#"><i id="toggle-icon" class="far fa-plus-square"></i></a>
+        </li>
+        <li class="menu-item" sec:authorize="hasAnyRole('ADMIN','EDITOR')">
+            <a href="#" th:href="@{/admin}">Panel admina</a>
+        </li>
+        <li class="menu-item">
+            <a href="#"> Top 10 aut</a>
+        </li>
+        <li class="menu-item">
+            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Zaloguj się</a>
+            <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
+        </li>
+    </ul>
+    <header class="jumbotron">
+        <h1 class="jumbotron-header">Dziękujemy za odwiedzenie naszej strony!</h1>
+        <p class="jumbotron-description">
+            Jeżeli się tu znalazłeś, to zakładam, że jesteś fanem motoryzacji.
+            <br>
+            Dobrze trafiłeś! Znajdziesz tutaj wiele przydatnych informacji na temat samochodów osobowych i nie tylko,
+            a ponadto możesz dodawać własne treści.
+        </p>
+    </header>
+    <h2 class="list-heading">Zarejestruj się</h2>
+    <form action="#" th:action="@{/rejestracja}" method="post" class="mc-form" th:object="${user}" style="margin: 20px auto">
+        <label for="email">Adres email</label>
+        <input id="email" type="email" placeholder="nazwa użytkownika" th:field="*{email}">
+        <label for="password">Hasło</label>
+        <input id="password" placeholder="hasło" type="password" th:field="*{password}">
+        <button type="submit">Zarejestruj się</button>
+    </form>
+    <footer class="footer">
+        <p>AutoBase 2024 <i class="fas fa-copyright"></i> Szymon Kwiecień</p>
+    </footer>
+</div>
+</body>
+</html>
