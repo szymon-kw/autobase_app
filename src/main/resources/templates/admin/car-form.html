@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Dodaj nowe auto |AutoBase|</title>
@@ -25,14 +25,15 @@
         <li class="menu-toggle">
             <a href="#"><i id="toggle-icon" class="far fa-plus-square"></i></a>
         </li>
-        <li class="menu-item">
+        <li class="menu-item" sec:authorize="hasAnyRole('ADMIN','EDITOR')">
             <a href="#" th:href="@{/admin}">Panel admina</a>
         </li>
         <li class="menu-item">
             <a href="#"> Top 10 aut</a>
         </li>
         <li class="menu-item">
-            <a href="#">Zaloguj się</a>
+            <a href="#" th:href="@{/login}" sec:authorize="!isAuthenticated()">Zaloguj się</a>
+            <a href="#" th:href="@{/logout}" sec:authorize="isAuthenticated()">Wyloguj się</a>
         </li>
     </ul>
     <header class="jumbotron">
@@ -46,7 +47,7 @@
     </header>
     <main class="main-content">
         <h2 class="list-heading">Dodaj nowe auto</h2>
-        <form action="" method="post" enctype="multipart/form-data" class="mc-form" th:object="${car}">
+        <form action="#" th:action="@{/admin/dodaj-auto}" method="post" enctype="multipart/form-data" class="mc-form" th:object="${car}">
             <label for="brand">Marka</label>
             <select id="brand" th:field="*{brand}" required>
                 <option value="" hidden>Wybierz markę</option>
