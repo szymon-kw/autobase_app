@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pl" xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="pl" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title th:text="|${car.brand} - Dane|">Nazwa auta - AutoBase</title>
@@ -64,22 +65,28 @@
             </div>
             <div class="car-rating-container car-section">
                 <h2 class="car-section-heading">Ocena</h2>
-                <div>
-                    <p class="car-rating-value" th:text="${avgRating}">4.0</p>
-                    <p>Liczba ocen: 134</p>
+                <p th:unless="${car.ratingCount}">Brak głosów</p>
+                <div th:if="${car.ratingCount}">
+                    <p class="car-rating-value" th:text="${#numbers.formatDecimal(car.avgRating, 1, 1)}">4.8</p>
+                    <p th:text="|Liczba ocen: ${car.ratingCount}|">Liczba ocen: 45</p>
                 </div>
-                <form action="#" class="car-rating-form">
+                <form action="#" th:action="@{/ocen-auto}" method="post"
+                      sec:authorize="isAuthenticated()"
+                      class="car-rating-form">
                     <p>Twoja ocena</p>
-                    <input type="hidden" name="carId">
+                    <input type="hidden" name="carId" th:value="${car.id}">
                     <div class="car-rating-buttons">
-                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
-                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
-                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
-                        <button class="car-rating-button"><i class="fa-solid fa-star"></i></button>
-                        <button class="car-rating-button"><i class="fa-regular fa-star"></i></button>
+                        <button class="car-rating-button"
+                                name="rating"
+                                th:each="i: ${#numbers.sequence(1, 5)}"
+                                th:value="${i}">
+                            <i class="fa-star" th:classappend="${i <= userRating ? 'fa-solid' : 'fa-regular'}"></i>
+                        </button>
                     </div>
                 </form>
-                <p><a href="#">Zaloguj się</a>, aby oddać głos</p>
+                <p sec:authorize="!isAuthenticated()">
+                    <a href="#" th:href="@{/login}">Zaloguj się</a>, aby oddać głos
+                </p>
             </div>
         </section>
         <section class="car"></section>

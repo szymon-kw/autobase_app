@@ -12,9 +12,12 @@ public class CarDto {
     private String brand;
     private boolean popular;
     private String photo;
+    private double avgRating;
+    private int ratingCount;
 
     public CarDto(Long id, String model, String type, Integer productionYear, String shortDescription,
-                  String description, String youtubeShowcaseId, String brand, boolean popular, String photo) {
+                  String description, String youtubeShowcaseId, String brand, boolean popular, String photo,
+                  Double avgRating, int ratingCount) {
         this.id = id;
         this.model = model;
         this.type = type;
@@ -25,6 +28,8 @@ public class CarDto {
         this.brand = brand;
         this.popular = popular;
         this.photo = photo;
+        this.avgRating = avgRating;
+        this.ratingCount = ratingCount;
     }
 
     public Long getId() {
@@ -105,5 +110,21 @@ public class CarDto {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public double getAvgRating() {
+        return avgRating;
+    }
+
+    public void setAvgRating(double avgRating) {
+        this.avgRating = avgRating;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
     }
 }

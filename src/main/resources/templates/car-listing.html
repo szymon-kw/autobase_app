@@ -67,7 +67,8 @@
                     </div>
                     <div class="car-list-item-rating">
                         <i class="fas fa-star"></i>
-                        <span>8.7</span>
+                        <span th:if="${car.ratingCount}" th:text="${#numbers.formatDecimal(car.avgRating, 1, 1)}">8.5</span>
+                        <span th:if="!${car.ratingCount}">Brak ocen</span>
                     </div>
                 </div>
             </li>

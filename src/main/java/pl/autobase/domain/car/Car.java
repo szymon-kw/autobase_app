@@ -2,6 +2,10 @@ package pl.autobase.domain.car;
 
 import pl.autobase.domain.brand.Brand;
 import jakarta.persistence.*;
+import pl.autobase.domain.rating.Rating;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Car {
@@ -18,6 +22,8 @@ public class Car {
     @ManyToOne
     @JoinColumn(name = "brand_id", referencedColumnName = "id")
     private Brand brand;
+    @OneToMany(mappedBy = "car")
+    private Set<Rating> ratings = new HashSet<>();
     private boolean popular;
     private String photo;
 
@@ -99,5 +105,13 @@ public class Car {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public Set<Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Set<Rating> ratings) {
+        this.ratings = ratings;
     }
 }
