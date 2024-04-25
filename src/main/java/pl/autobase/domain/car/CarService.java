@@ -1,5 +1,6 @@
 package pl.autobase.domain.car;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.autobase.domain.brand.Brand;
 import pl.autobase.domain.brand.BrandRepository;
@@ -50,5 +51,12 @@ public class CarService {
             car.setPhoto(savedFileName);
         }
         carRepository.save(car);
+    }
+
+    public List<CarDto> findTopCars(int size) {
+        Pageable page = Pageable.ofSize(size);
+        return carRepository.findTopByRating(page).stream()
+                .map(CarDtoMapper::map)
+                .toList();
     }
 }

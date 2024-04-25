@@ -13,6 +13,7 @@ import pl.autobase.domain.car.CarService;
 import pl.autobase.domain.car.dto.CarDto;
 import pl.autobase.domain.rating.RatingService;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -38,5 +39,14 @@ public class CarController {
             model.addAttribute("userRating", rating);
         }
         return "car";
+    }
+
+    @GetMapping("/top10")
+    public String findTop10(Model model) {
+        List<CarDto> top10Cars = carService.findTopCars(10);
+        model.addAttribute("heading", "TOP 10 AUT (wg ocen)");
+        model.addAttribute("description", "Oto najlepiej oceniane auta: ");
+        model.addAttribute("cars", top10Cars);
+        return "car-listing";
     }
 }
